@@ -1,0 +1,1149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище ASModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountForInsuranceCompanies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" />
+          <Property Name="InvoiceNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="InvoiceDate" Type="date" />
+          <Property Name="Amount" Type="money" />
+          <Property Name="IdInsuranceCompany" Type="int" />
+          <Property Name="IdStatusAccount" Type="int" />
+          <Property Name="EndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Analyzer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AndlyzerName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="AnalyzerData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdAnilyzer" Type="int" />
+          <Property Name="IdLaboratoryAssistant" Type="int" />
+          <Property Name="DateTimeOfOrderReceipt" Type="datetime" />
+          <Property Name="IdOrderAndServices" Type="int" />
+          <Property Name="LeadTime" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" />
+          <Property Name="Ip" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateStart" Type="datetime" />
+          <Property Name="DateEnd" Type="datetime" />
+          <Property Name="IdReason" Type="int" />
+        </EntityType>
+        <EntityType Name="InsuranceCompany">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address" Type="nvarchar" MaxLength="255" />
+          <Property Name="INN" Type="nvarchar" MaxLength="12" />
+          <Property Name="PaymentAccount" Type="nvarchar" MaxLength="20" />
+          <Property Name="BankIdentificationCode" Type="nvarchar" MaxLength="8" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="DateOfCreation" Type="datetime" />
+          <Property Name="IdStatusOrder" Type="int" />
+          <Property Name="OrderCompletionTime" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="OrderAndServices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdOrder" Type="int" Nullable="false" />
+          <Property Name="ServiceCode" Type="int" />
+          <Property Name="BarcodeCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdStatus" Type="int" />
+          <Property Name="Result" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PolicyTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ReasonsForExit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Service" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="PeriodOfExecution" Type="int" Nullable="false" />
+          <Property Name="InitialAVGDeviation" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FinalAVGDeviation" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AnalyzerType" Type="int" />
+        </EntityType>
+        <EntityType Name="StatusAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusServicesInOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="PassportSeries" Type="nvarchar" MaxLength="4" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="6" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="25" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="InsurancePolicyNumber" Type="nvarchar" MaxLength="16" />
+          <Property Name="IdPolicyType" Type="int" />
+          <Property Name="IdUserType" Type="int" />
+          <Property Name="IdInsuranceCompany" Type="int" />
+          <Property Name="NameImage" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AccountForInsuranceCompanies$_InsuranceCompany$">
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="0..1" />
+          <End Role="AccountForInsuranceCompanies" Type="Self.AccountForInsuranceCompanies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompany">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountForInsuranceCompanies">
+              <PropertyRef Name="IdInsuranceCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountForInsuranceCompanies$_StatusAccount$">
+          <End Role="StatusAccount" Type="Self.StatusAccount" Multiplicity="0..1" />
+          <End Role="AccountForInsuranceCompanies" Type="Self.AccountForInsuranceCompanies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountForInsuranceCompanies">
+              <PropertyRef Name="IdStatusAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountForInsuranceCompanies$_Users$">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="AccountForInsuranceCompanies" Type="Self.AccountForInsuranceCompanies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountForInsuranceCompanies">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountForInsuranceCompanies_InsuranceCompany">
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="0..1" />
+          <End Role="AccountForInsuranceCompanies" Type="Self.AccountForInsuranceCompanies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompany">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountForInsuranceCompanies">
+              <PropertyRef Name="IdInsuranceCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnalyzerData_Analyzer$">
+          <End Role="Analyzer" Type="Self.Analyzer" Multiplicity="0..1" />
+          <End Role="AnalyzerData" Type="Self.AnalyzerData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analyzer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnalyzerData">
+              <PropertyRef Name="IdAnilyzer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnalyzerData_OrderAndServices$">
+          <End Role="OrderAndServices" Type="Self.OrderAndServices" Multiplicity="0..1" />
+          <End Role="AnalyzerData" Type="Self.AnalyzerData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderAndServices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnalyzerData">
+              <PropertyRef Name="IdOrderAndServices" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History$_ReasonsForExit">
+          <End Role="ReasonsForExit" Type="Self.ReasonsForExit" Multiplicity="0..1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReasonsForExit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="IdReason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History$_Users$">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order$_StatusOrder$">
+          <End Role="StatusOrder" Type="Self.StatusOrder" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdStatusOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order$_Users$">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderAndServices$_Order$">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderAndServices" Type="Self.OrderAndServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderAndServices">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderAndServices$_Services$">
+          <End Role="Services" Type="Self.Services" Multiplicity="0..1" />
+          <End Role="OrderAndServices" Type="Self.OrderAndServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="OrderAndServices">
+              <PropertyRef Name="ServiceCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderAndServices$_StatusServicesInOrder$">
+          <End Role="StatusServicesInOrder" Type="Self.StatusServicesInOrder" Multiplicity="0..1" />
+          <End Role="OrderAndServices" Type="Self.OrderAndServices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusServicesInOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderAndServices">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users$_PolicyTypes$">
+          <End Role="PolicyTypes" Type="Self.PolicyTypes" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PolicyTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdPolicyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users$_UserType$">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdUserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_InsuranceCompany">
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompany">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdInsuranceCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_InsuranceCompany1">
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompany">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdInsuranceCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ASModelContainer">
+          <EntitySet Name="AccountForInsuranceCompanies" EntityType="Self.AccountForInsuranceCompanies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Analyzer" EntityType="Self.Analyzer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnalyzerData" EntityType="Self.AnalyzerData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsuranceCompany" EntityType="Self.InsuranceCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderAndServices" EntityType="Self.OrderAndServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PolicyTypes" EntityType="Self.PolicyTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReasonsForExit" EntityType="Self.ReasonsForExit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusAccount" EntityType="Self.StatusAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusOrder" EntityType="Self.StatusOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusServicesInOrder" EntityType="Self.StatusServicesInOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AccountForInsuranceCompanies$_InsuranceCompany$" Association="Self.FK_AccountForInsuranceCompanies$_InsuranceCompany$">
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompany" />
+            <End Role="AccountForInsuranceCompanies" EntitySet="AccountForInsuranceCompanies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountForInsuranceCompanies$_StatusAccount$" Association="Self.FK_AccountForInsuranceCompanies$_StatusAccount$">
+            <End Role="StatusAccount" EntitySet="StatusAccount" />
+            <End Role="AccountForInsuranceCompanies" EntitySet="AccountForInsuranceCompanies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountForInsuranceCompanies$_Users$" Association="Self.FK_AccountForInsuranceCompanies$_Users$">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AccountForInsuranceCompanies" EntitySet="AccountForInsuranceCompanies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountForInsuranceCompanies_InsuranceCompany" Association="Self.FK_AccountForInsuranceCompanies_InsuranceCompany">
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompany" />
+            <End Role="AccountForInsuranceCompanies" EntitySet="AccountForInsuranceCompanies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnalyzerData_Analyzer$" Association="Self.FK_AnalyzerData_Analyzer$">
+            <End Role="Analyzer" EntitySet="Analyzer" />
+            <End Role="AnalyzerData" EntitySet="AnalyzerData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnalyzerData_OrderAndServices$" Association="Self.FK_AnalyzerData_OrderAndServices$">
+            <End Role="OrderAndServices" EntitySet="OrderAndServices" />
+            <End Role="AnalyzerData" EntitySet="AnalyzerData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History$_ReasonsForExit" Association="Self.FK_History$_ReasonsForExit">
+            <End Role="ReasonsForExit" EntitySet="ReasonsForExit" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History$_Users$" Association="Self.FK_History$_Users$">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order$_StatusOrder$" Association="Self.FK_Order$_StatusOrder$">
+            <End Role="StatusOrder" EntitySet="StatusOrder" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order$_Users$" Association="Self.FK_Order$_Users$">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderAndServices$_Order$" Association="Self.FK_OrderAndServices$_Order$">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="OrderAndServices" EntitySet="OrderAndServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderAndServices$_Services$" Association="Self.FK_OrderAndServices$_Services$">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="OrderAndServices" EntitySet="OrderAndServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderAndServices$_StatusServicesInOrder$" Association="Self.FK_OrderAndServices$_StatusServicesInOrder$">
+            <End Role="StatusServicesInOrder" EntitySet="StatusServicesInOrder" />
+            <End Role="OrderAndServices" EntitySet="OrderAndServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users$_PolicyTypes$" Association="Self.FK_Users$_PolicyTypes$">
+            <End Role="PolicyTypes" EntitySet="PolicyTypes" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users$_UserType$" Association="Self.FK_Users$_UserType$">
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_InsuranceCompany" Association="Self.FK_Users_InsuranceCompany">
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompany" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_InsuranceCompany1" Association="Self.FK_Users_InsuranceCompany1">
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompany" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ASModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccountForInsuranceCompany">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceDate" Type="DateTime" Precision="0" />
+          <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="IdInsuranceCompany" Type="Int32" />
+          <Property Name="IdStatusAccount" Type="Int32" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="InsuranceCompany" Relationship="Self.FK_AccountForInsuranceCompanies__InsuranceCompany_" FromRole="AccountForInsuranceCompanies" ToRole="InsuranceCompany" />
+          <NavigationProperty Name="StatusAccount" Relationship="Self.FK_AccountForInsuranceCompanies__StatusAccount_" FromRole="AccountForInsuranceCompanies" ToRole="StatusAccount" />
+          <NavigationProperty Name="User" Relationship="Self.FK_AccountForInsuranceCompanies__Users_" FromRole="AccountForInsuranceCompanies" ToRole="Users" />
+          <NavigationProperty Name="InsuranceCompany1" Relationship="Self.FK_AccountForInsuranceCompanies_InsuranceCompany" FromRole="AccountForInsuranceCompanies" ToRole="InsuranceCompany" />
+        </EntityType>
+        <EntityType Name="Analyzer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AndlyzerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AnalyzerDatas" Relationship="Self.FK_AnalyzerData_Analyzer_" FromRole="Analyzer" ToRole="AnalyzerData" />
+        </EntityType>
+        <EntityType Name="AnalyzerData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdAnilyzer" Type="Int32" />
+          <Property Name="IdLaboratoryAssistant" Type="Int32" />
+          <Property Name="DateTimeOfOrderReceipt" Type="DateTime" Precision="3" />
+          <Property Name="IdOrderAndServices" Type="Int32" />
+          <Property Name="LeadTime" Type="Time" Precision="7" />
+          <NavigationProperty Name="Analyzer" Relationship="Self.FK_AnalyzerData_Analyzer_" FromRole="AnalyzerData" ToRole="Analyzer" />
+          <NavigationProperty Name="OrderAndService" Relationship="Self.FK_AnalyzerData_OrderAndServices_" FromRole="AnalyzerData" ToRole="OrderAndServices" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" />
+          <Property Name="Ip" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateStart" Type="DateTime" Precision="3" />
+          <Property Name="DateEnd" Type="DateTime" Precision="3" />
+          <Property Name="IdReason" Type="Int32" />
+          <NavigationProperty Name="ReasonsForExit" Relationship="Self.FK_History__ReasonsForExit" FromRole="History" ToRole="ReasonsForExit" />
+          <NavigationProperty Name="User" Relationship="Self.FK_History__Users_" FromRole="History" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="InsuranceCompany">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="INN" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentAccount" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BankIdentificationCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountForInsuranceCompanies" Relationship="Self.FK_AccountForInsuranceCompanies__InsuranceCompany_" FromRole="InsuranceCompany" ToRole="AccountForInsuranceCompanies" />
+          <NavigationProperty Name="AccountForInsuranceCompanies1" Relationship="Self.FK_AccountForInsuranceCompanies_InsuranceCompany" FromRole="InsuranceCompany" ToRole="AccountForInsuranceCompanies" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_InsuranceCompany" FromRole="InsuranceCompany" ToRole="Users" />
+          <NavigationProperty Name="Users1" Relationship="Self.FK_Users_InsuranceCompany1" FromRole="InsuranceCompany" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="DateOfCreation" Type="DateTime" Precision="3" />
+          <Property Name="IdStatusOrder" Type="Int32" />
+          <Property Name="OrderCompletionTime" Type="Time" Precision="7" />
+          <NavigationProperty Name="StatusOrder" Relationship="Self.FK_Order__StatusOrder_" FromRole="Order" ToRole="StatusOrder" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Order__Users_" FromRole="Order" ToRole="Users" />
+          <NavigationProperty Name="OrderAndServices" Relationship="Self.FK_OrderAndServices__Order_" FromRole="Order" ToRole="OrderAndServices" />
+        </EntityType>
+        <EntityType Name="OrderAndService">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdOrder" Type="Int32" Nullable="false" />
+          <Property Name="ServiceCode" Type="Int32" />
+          <Property Name="BarcodeCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdStatus" Type="Int32" />
+          <Property Name="Result" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AnalyzerDatas" Relationship="Self.FK_AnalyzerData_OrderAndServices_" FromRole="OrderAndServices" ToRole="AnalyzerData" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderAndServices__Order_" FromRole="OrderAndServices" ToRole="Order" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_OrderAndServices__Services_" FromRole="OrderAndServices" ToRole="Services" />
+          <NavigationProperty Name="StatusServicesInOrder" Relationship="Self.FK_OrderAndServices__StatusServicesInOrder_" FromRole="OrderAndServices" ToRole="StatusServicesInOrder" />
+        </EntityType>
+        <EntityType Name="PolicyType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users__PolicyTypes_" FromRole="PolicyTypes" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="ReasonsForExit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Histories" Relationship="Self.FK_History__ReasonsForExit" FromRole="ReasonsForExit" ToRole="History" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Code" />
+          </Key>
+          <Property Name="Code" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Service1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="PeriodOfExecution" Type="Int32" Nullable="false" />
+          <Property Name="InitialAVGDeviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FinalAVGDeviation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AnalyzerType" Type="Int32" />
+          <NavigationProperty Name="OrderAndServices" Relationship="Self.FK_OrderAndServices__Services_" FromRole="Services" ToRole="OrderAndServices" />
+        </EntityType>
+        <EntityType Name="StatusAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="AccountForInsuranceCompanies" Relationship="Self.FK_AccountForInsuranceCompanies__StatusAccount_" FromRole="StatusAccount" ToRole="AccountForInsuranceCompanies" />
+        </EntityType>
+        <EntityType Name="StatusOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order__StatusOrder_" FromRole="StatusOrder" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="StatusServicesInOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="OrderAndServices" Relationship="Self.FK_OrderAndServices__StatusServicesInOrder_" FromRole="StatusServicesInOrder" ToRole="OrderAndServices" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="0" />
+          <Property Name="PassportSeries" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="PassportNumber" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InsurancePolicyNumber" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="IdPolicyType" Type="Int32" />
+          <Property Name="IdUserType" Type="Int32" />
+          <Property Name="IdInsuranceCompany" Type="Int32" />
+          <Property Name="NameImage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AccountForInsuranceCompanies" Relationship="Self.FK_AccountForInsuranceCompanies__Users_" FromRole="Users" ToRole="AccountForInsuranceCompanies" />
+          <NavigationProperty Name="Histories" Relationship="Self.FK_History__Users_" FromRole="Users" ToRole="History" />
+          <NavigationProperty Name="InsuranceCompany" Relationship="Self.FK_Users_InsuranceCompany" FromRole="Users" ToRole="InsuranceCompany" />
+          <NavigationProperty Name="InsuranceCompany1" Relationship="Self.FK_Users_InsuranceCompany1" FromRole="Users" ToRole="InsuranceCompany" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order__Users_" FromRole="Users" ToRole="Order" />
+          <NavigationProperty Name="PolicyType" Relationship="Self.FK_Users__PolicyTypes_" FromRole="Users" ToRole="PolicyTypes" />
+          <NavigationProperty Name="UserType" Relationship="Self.FK_Users__UserType_" FromRole="Users" ToRole="UserType" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users__UserType_" FromRole="UserType" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_AccountForInsuranceCompanies__InsuranceCompany_">
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="0..1" />
+          <End Role="AccountForInsuranceCompanies" Type="Self.AccountForInsuranceCompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompany">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountForInsuranceCompanies">
+              <PropertyRef Name="IdInsuranceCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountForInsuranceCompanies__StatusAccount_">
+          <End Role="StatusAccount" Type="Self.StatusAccount" Multiplicity="0..1" />
+          <End Role="AccountForInsuranceCompanies" Type="Self.AccountForInsuranceCompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusAccount">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountForInsuranceCompanies">
+              <PropertyRef Name="IdStatusAccount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountForInsuranceCompanies__Users_">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="AccountForInsuranceCompanies" Type="Self.AccountForInsuranceCompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountForInsuranceCompanies">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AccountForInsuranceCompanies_InsuranceCompany">
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="0..1" />
+          <End Role="AccountForInsuranceCompanies" Type="Self.AccountForInsuranceCompany" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompany">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AccountForInsuranceCompanies">
+              <PropertyRef Name="IdInsuranceCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnalyzerData_Analyzer_">
+          <End Role="Analyzer" Type="Self.Analyzer" Multiplicity="0..1" />
+          <End Role="AnalyzerData" Type="Self.AnalyzerData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Analyzer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnalyzerData">
+              <PropertyRef Name="IdAnilyzer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnalyzerData_OrderAndServices_">
+          <End Role="OrderAndServices" Type="Self.OrderAndService" Multiplicity="0..1" />
+          <End Role="AnalyzerData" Type="Self.AnalyzerData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderAndServices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AnalyzerData">
+              <PropertyRef Name="IdOrderAndServices" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History__ReasonsForExit">
+          <End Role="ReasonsForExit" Type="Self.ReasonsForExit" Multiplicity="0..1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReasonsForExit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="IdReason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_History__Users_">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_InsuranceCompany">
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompany">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdInsuranceCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_InsuranceCompany1">
+          <End Role="InsuranceCompany" Type="Self.InsuranceCompany" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InsuranceCompany">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdInsuranceCompany" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order__StatusOrder_">
+          <End Role="StatusOrder" Type="Self.StatusOrder" Multiplicity="0..1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdStatusOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order__Users_">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="IdUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderAndServices__Order_">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="OrderAndServices" Type="Self.OrderAndService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderAndServices">
+              <PropertyRef Name="IdOrder" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderAndServices__Services_">
+          <End Role="Services" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="OrderAndServices" Type="Self.OrderAndService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Code" />
+            </Principal>
+            <Dependent Role="OrderAndServices">
+              <PropertyRef Name="ServiceCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderAndServices__StatusServicesInOrder_">
+          <End Role="StatusServicesInOrder" Type="Self.StatusServicesInOrder" Multiplicity="0..1" />
+          <End Role="OrderAndServices" Type="Self.OrderAndService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusServicesInOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderAndServices">
+              <PropertyRef Name="IdStatus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users__PolicyTypes_">
+          <End Role="PolicyTypes" Type="Self.PolicyType" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PolicyTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdPolicyType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users__UserType_">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="IdUserType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ASEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountForInsuranceCompanies" EntityType="Self.AccountForInsuranceCompany" />
+          <EntitySet Name="Analyzers" EntityType="Self.Analyzer" />
+          <EntitySet Name="AnalyzerDatas" EntityType="Self.AnalyzerData" />
+          <EntitySet Name="Histories" EntityType="Self.History" />
+          <EntitySet Name="InsuranceCompanies" EntityType="Self.InsuranceCompany" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="OrderAndServices" EntityType="Self.OrderAndService" />
+          <EntitySet Name="PolicyTypes" EntityType="Self.PolicyType" />
+          <EntitySet Name="ReasonsForExits" EntityType="Self.ReasonsForExit" />
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <EntitySet Name="StatusAccounts" EntityType="Self.StatusAccount" />
+          <EntitySet Name="StatusOrders" EntityType="Self.StatusOrder" />
+          <EntitySet Name="StatusServicesInOrders" EntityType="Self.StatusServicesInOrder" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+          <AssociationSet Name="FK_AccountForInsuranceCompanies__InsuranceCompany_" Association="Self.FK_AccountForInsuranceCompanies__InsuranceCompany_">
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompanies" />
+            <End Role="AccountForInsuranceCompanies" EntitySet="AccountForInsuranceCompanies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountForInsuranceCompanies__StatusAccount_" Association="Self.FK_AccountForInsuranceCompanies__StatusAccount_">
+            <End Role="StatusAccount" EntitySet="StatusAccounts" />
+            <End Role="AccountForInsuranceCompanies" EntitySet="AccountForInsuranceCompanies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountForInsuranceCompanies__Users_" Association="Self.FK_AccountForInsuranceCompanies__Users_">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="AccountForInsuranceCompanies" EntitySet="AccountForInsuranceCompanies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AccountForInsuranceCompanies_InsuranceCompany" Association="Self.FK_AccountForInsuranceCompanies_InsuranceCompany">
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompanies" />
+            <End Role="AccountForInsuranceCompanies" EntitySet="AccountForInsuranceCompanies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnalyzerData_Analyzer_" Association="Self.FK_AnalyzerData_Analyzer_">
+            <End Role="Analyzer" EntitySet="Analyzers" />
+            <End Role="AnalyzerData" EntitySet="AnalyzerDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnalyzerData_OrderAndServices_" Association="Self.FK_AnalyzerData_OrderAndServices_">
+            <End Role="OrderAndServices" EntitySet="OrderAndServices" />
+            <End Role="AnalyzerData" EntitySet="AnalyzerDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History__ReasonsForExit" Association="Self.FK_History__ReasonsForExit">
+            <End Role="ReasonsForExit" EntitySet="ReasonsForExits" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_History__Users_" Association="Self.FK_History__Users_">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="History" EntitySet="Histories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_InsuranceCompany" Association="Self.FK_Users_InsuranceCompany">
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompanies" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_InsuranceCompany1" Association="Self.FK_Users_InsuranceCompany1">
+            <End Role="InsuranceCompany" EntitySet="InsuranceCompanies" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order__StatusOrder_" Association="Self.FK_Order__StatusOrder_">
+            <End Role="StatusOrder" EntitySet="StatusOrders" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order__Users_" Association="Self.FK_Order__Users_">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderAndServices__Order_" Association="Self.FK_OrderAndServices__Order_">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrderAndServices" EntitySet="OrderAndServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderAndServices__Services_" Association="Self.FK_OrderAndServices__Services_">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="OrderAndServices" EntitySet="OrderAndServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderAndServices__StatusServicesInOrder_" Association="Self.FK_OrderAndServices__StatusServicesInOrder_">
+            <End Role="StatusServicesInOrder" EntitySet="StatusServicesInOrders" />
+            <End Role="OrderAndServices" EntitySet="OrderAndServices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users__PolicyTypes_" Association="Self.FK_Users__PolicyTypes_">
+            <End Role="PolicyTypes" EntitySet="PolicyTypes" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users__UserType_" Association="Self.FK_Users__UserType_">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ASModelContainer" CdmEntityContainer="ASEntities">
+          <EntitySetMapping Name="AccountForInsuranceCompanies">
+            <EntityTypeMapping TypeName="ASModel.AccountForInsuranceCompany">
+              <MappingFragment StoreEntitySet="AccountForInsuranceCompanies">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="IdInsuranceCompany" ColumnName="IdInsuranceCompany" />
+                <ScalarProperty Name="IdStatusAccount" ColumnName="IdStatusAccount" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Analyzers">
+            <EntityTypeMapping TypeName="ASModel.Analyzer">
+              <MappingFragment StoreEntitySet="Analyzer">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AndlyzerName" ColumnName="AndlyzerName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnalyzerDatas">
+            <EntityTypeMapping TypeName="ASModel.AnalyzerData">
+              <MappingFragment StoreEntitySet="AnalyzerData">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdAnilyzer" ColumnName="IdAnilyzer" />
+                <ScalarProperty Name="IdLaboratoryAssistant" ColumnName="IdLaboratoryAssistant" />
+                <ScalarProperty Name="DateTimeOfOrderReceipt" ColumnName="DateTimeOfOrderReceipt" />
+                <ScalarProperty Name="IdOrderAndServices" ColumnName="IdOrderAndServices" />
+                <ScalarProperty Name="LeadTime" ColumnName="LeadTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Histories">
+            <EntityTypeMapping TypeName="ASModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Ip" ColumnName="Ip" />
+                <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="IdReason" ColumnName="IdReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsuranceCompanies">
+            <EntityTypeMapping TypeName="ASModel.InsuranceCompany">
+              <MappingFragment StoreEntitySet="InsuranceCompany">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="INN" ColumnName="INN" />
+                <ScalarProperty Name="PaymentAccount" ColumnName="PaymentAccount" />
+                <ScalarProperty Name="BankIdentificationCode" ColumnName="BankIdentificationCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="ASModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="DateOfCreation" ColumnName="DateOfCreation" />
+                <ScalarProperty Name="IdStatusOrder" ColumnName="IdStatusOrder" />
+                <ScalarProperty Name="OrderCompletionTime" ColumnName="OrderCompletionTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderAndServices">
+            <EntityTypeMapping TypeName="ASModel.OrderAndService">
+              <MappingFragment StoreEntitySet="OrderAndServices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IdOrder" ColumnName="IdOrder" />
+                <ScalarProperty Name="ServiceCode" ColumnName="ServiceCode" />
+                <ScalarProperty Name="BarcodeCode" ColumnName="BarcodeCode" />
+                <ScalarProperty Name="IdStatus" ColumnName="IdStatus" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PolicyTypes">
+            <EntityTypeMapping TypeName="ASModel.PolicyType">
+              <MappingFragment StoreEntitySet="PolicyTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReasonsForExits">
+            <EntityTypeMapping TypeName="ASModel.ReasonsForExit">
+              <MappingFragment StoreEntitySet="ReasonsForExit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="ASModel.Service">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Service1" ColumnName="Service" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PeriodOfExecution" ColumnName="PeriodOfExecution" />
+                <ScalarProperty Name="InitialAVGDeviation" ColumnName="InitialAVGDeviation" />
+                <ScalarProperty Name="FinalAVGDeviation" ColumnName="FinalAVGDeviation" />
+                <ScalarProperty Name="AnalyzerType" ColumnName="AnalyzerType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusAccounts">
+            <EntityTypeMapping TypeName="ASModel.StatusAccount">
+              <MappingFragment StoreEntitySet="StatusAccount">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusOrders">
+            <EntityTypeMapping TypeName="ASModel.StatusOrder">
+              <MappingFragment StoreEntitySet="StatusOrder">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusServicesInOrders">
+            <EntityTypeMapping TypeName="ASModel.StatusServicesInOrder">
+              <MappingFragment StoreEntitySet="StatusServicesInOrder">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="ASModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="ASModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="InsurancePolicyNumber" ColumnName="InsurancePolicyNumber" />
+                <ScalarProperty Name="IdPolicyType" ColumnName="IdPolicyType" />
+                <ScalarProperty Name="IdUserType" ColumnName="IdUserType" />
+                <ScalarProperty Name="IdInsuranceCompany" ColumnName="IdInsuranceCompany" />
+                <ScalarProperty Name="NameImage" ColumnName="NameImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="ASModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

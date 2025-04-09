@@ -1,0 +1,92 @@
+﻿<Window x:Class="MedLab.Windows.UserWindows.MainUserWindows"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedLab.Windows.UserWindows"
+        mc:Ignorable="d"
+        Title="Клиент" Height="780" Width="1370" WindowState="Maximized" MinHeight="450" MinWidth="800" WindowStartupLocation="CenterScreen" Closing="Window_Closing_1">
+    <Grid Background="#FFD4A7E8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Image x:Name="ImageRole" Height="150px" Source="/Image/Avatars/Klient.jpg"/>
+            <TextBlock Margin="0 15 0 0" x:Name="NameRole" Text="Клиент" FontSize="24" HorizontalAlignment="Center" Foreground="White" FontFamily="Dubai Medium"/>
+            <Button x:Name="ExitMainForUser" Content="Выйти" Margin="5 15 5 0" FontFamily="Dubai Medium"  FontSize="24" Foreground="White" Background="#FFEB59C3" Click="ExitMainForUser_Click"/>
+        </StackPanel>
+        <ScrollViewer Grid.Column="1">
+            <Grid>
+                <Rectangle/>
+                <StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="30,0,30,30">
+                        <TextBlock x:Name="FIOUser" Foreground="#FF0038E8" HorizontalAlignment="Center" FontSize="36"/>
+                        <TextBlock Text="Список выполненных заказов" HorizontalAlignment="Center" FontSize="36" Foreground="White" FontFamily="Dubai Medium"/>
+                        <StackPanel Orientation="Vertical" Grid.Column="0">
+                            <TextBlock Text="Поиск" Margin="0 0 0 5" Foreground="White" FontFamily="Dubai Medium"/>
+                            <TextBox x:Name="OrderSearchText" Height="40px" FontFamily="Dubai Medium" SelectionChanged="OrderSearchText_SelectionChanged" FontSize="18"/>
+                            <Grid x:Name="DateGrid" Visibility="Collapsed">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"/>
+                                    <ColumnDefinition Width="1*"/>
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Grid.ColumnSpan="2">
+                                    <Rectangle.Fill>
+                                        <SolidColorBrush Color="Blue" Opacity="0.1"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <StackPanel Grid.Column="0" Margin="0 0 5 0">
+                                    <TextBlock Text="От:" Margin="0 0 0 5" FontFamily="Dubai Medium"/>
+                                    <DatePicker x:Name="StartDate" SelectedDateChanged="StartDate_SelectedDateChanged" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Text="До:" Margin="0 0 0 5" FontFamily="Dubai Medium"/>
+                                    <DatePicker x:Name="EndDate" SelectedDateChanged="StartDate_SelectedDateChanged"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Column="3">
+                            <TextBlock Text="По:" Margin="0 0 0 5" Foreground="White" FontFamily="Dubai Medium"/>
+                            <ComboBox x:Name="OrderSearchBy" FontSize="24px" Height="40px" FontFamily="Dubai Medium" SelectionChanged="OrderSearchBy_SelectionChanged"/>
+                        </StackPanel>
+                        <DataGrid AutoGenerateColumns="False" Margin="0 15 0 0" FontFamily="Dubai Medium" Height="500" FontSize="24" x:Name="OrderList" SelectionChanged="OrderList_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Дата создания" Binding="{Binding DateOfCreation}" Foreground="Black"/>
+                                <DataGridTextColumn Header="Статус" Binding="{Binding StatusOrder.Status}" Foreground="Black"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                    <StackPanel>
+                        <TextBlock Text="Список выполненных анализов" HorizontalAlignment="Center" FontSize="36" FontFamily="Dubai Medium" Foreground="White"/>
+                        <Grid Height="80px" Margin="0 0 0 15">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="15"/>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Orientation="Vertical" Grid.Column="0">
+                                <TextBlock Text="Поиск" Margin="0 0 0 5" FontFamily="Dubai Medium" Foreground="White"/>
+                                <TextBox x:Name="SericeSearchText" Height="40px" FontFamily="Dubai Medium" FontSize="18" SelectionChanged="SericeSearchText_SelectionChanged"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical" Grid.Column="2">
+                                <TextBlock Text="По:" Margin="0 0 0 5" FontFamily="Dubai Medium" Foreground="White"/>
+                                <ComboBox x:Name="ServiceSearchBy" FontSize="24px" Height="40px" FontFamily="Dubai Medium" SelectionChanged="ServiceSearchBy_SelectionChanged"/>
+                            </StackPanel>
+                        </Grid>
+                        <DataGrid AutoGenerateColumns="False" Margin="0 15 0 0" Height="500" FontSize="24" x:Name="ServiceList">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Название" Binding="{Binding Service.Service1}"/>
+                                <DataGridTextColumn Header="Статус" Binding="{Binding StatusServicesInOrder.Status}"/>
+                                <DataGridTextColumn Header="Начальная норма" Binding="{Binding Service.InitialAVGDeviation}"/>
+                                <DataGridTextColumn Header="Конечная норма" Binding="{Binding Service.FinalAVGDeviation}"/>
+                                <DataGridTextColumn Header="Результат" Binding="{Binding Result}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Window>

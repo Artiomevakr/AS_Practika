@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4e585b79495a432981fcd539a34979db" Name="Diagram1">
+        <EntityTypeShape EntityType="ASModel.AccountForInsuranceCompany" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.Analyzer" Width="1.5" PointX="13.5" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.AnalyzerData" Width="1.5" PointX="15.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.History" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.InsuranceCompany" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.Order" Width="1.5" PointX="11.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.OrderAndService" Width="1.5" PointX="13.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.PolicyType" Width="1.5" PointX="3.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.ReasonsForExit" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.Service" Width="1.5" PointX="11.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.StatusAccount" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.StatusOrder" Width="1.5" PointX="9" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.StatusServicesInOrder" Width="1.5" PointX="11.25" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.sysdiagram" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.User" Width="1.5" PointX="6" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="ASModel.UserType" Width="1.5" PointX="3.75" PointY="9.875" IsExpanded="true" />
+        <AssociationConnector Association="ASModel.FK_AccountForInsuranceCompanies__InsuranceCompany_" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_AccountForInsuranceCompanies__StatusAccount_" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_AccountForInsuranceCompanies__Users_" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_AccountForInsuranceCompanies_InsuranceCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_AnalyzerData_Analyzer_" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_AnalyzerData_OrderAndServices_" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_History__ReasonsForExit" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_History__Users_" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_Users_InsuranceCompany" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_Users_InsuranceCompany1" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_Order__StatusOrder_" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_Order__Users_" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_OrderAndServices__Order_" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_OrderAndServices__Services_" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_OrderAndServices__StatusServicesInOrder_" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_Users__PolicyTypes_" ManuallyRouted="false" />
+        <AssociationConnector Association="ASModel.FK_Users__UserType_" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

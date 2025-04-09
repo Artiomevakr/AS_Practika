@@ -1,0 +1,89 @@
+﻿<Window x:Class="MedLab.Windows.LaboratoryAssistantResearcherWindows.MainLaboratoryAssistantResearcher"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MedLab.Windows.LaboratoryAssistantResearcherWindows"
+        mc:Ignorable="d"
+        Title="Лаборант-исследователь" Height="780" Width="1370" WindowState="Maximized" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Grid Background="#FFD4A7E8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Orientation="Vertical">
+            <Image x:Name="ImageRole" Height="150px" Source="/Image/Avatars/laborant_1.jpeg"/>
+            <TextBlock Margin="0 15 0 0" x:Name="NameRole" Foreground="White" FontFamily="Dubai Medium"  Text="Лаборант исследователь" TextWrapping="Wrap" TextAlignment="Center" FontSize="21" HorizontalAlignment="Center"/>
+            <Button x:Name="ExitMainForLabAssitantRes" Content="Выйти" Margin="0 15 0 0" Click="ExitMainForLabAssitantRes_Click" FontSize="24" FontFamily="Dubai Medium"  Foreground="White" Background="#FFEB59C3"/>
+        </StackPanel>
+        <Grid Grid.Column="1">
+            <Rectangle/>
+            <ScrollViewer Margin="15 0 15 15">
+                <StackPanel>
+                    <StackPanel Grid.Column="1" Height="60px" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                        <TextBlock x:Name="FIOUser" Margin="0 0 15 0" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Foreground="#FF0038E8"/>
+                        <TextBlock x:Name="timerTB" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="28" Foreground="#FF0038E8"/>
+                    </StackPanel>
+                    <TextBlock Text="Тип анализатора" FontSize="24" FontFamily="Dubai Medium" Foreground="White" />
+                    <ComboBox Width="300px" HorizontalAlignment="Left" FontSize="24px" x:Name="ListAnalyzer" SelectionChanged="ListAnalyzer_SelectionChanged" FontFamily="Dubai Medium"/>
+                    <Grid Height="80px" Margin="0 15 0 15">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="15"/>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="13*"/>
+                            <ColumnDefinition Width="545*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Grid.ColumnSpan="5">
+                            <Rectangle.Fill>
+                                <SolidColorBrush  Opacity="0.1"/>
+                            </Rectangle.Fill>
+                        </Rectangle>
+                        <StackPanel Orientation="Vertical" Grid.Column="0">
+                            <TextBlock Text="Поиск" Margin="0 0 0 5" FontSize="20" FontFamily="Dubai Medium" Foreground="White"/>
+                            <TextBox x:Name="ServiceSearchText" Height="40px" SelectionChanged="ServiceSearchText_SelectionChanged" FontFamily="Dubai Medium"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Column="2">
+                            <TextBlock Text="По:" Margin="0 0 0 5" FontSize="20" FontFamily="Dubai Medium" Foreground="White"/>
+                            <ComboBox x:Name="ServiceSearchBy" FontSize="24px" Height="40px" SelectionChanged="ServiceSearchBy_SelectionChanged" FontFamily="Dubai Medium"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Grid.Column="4">
+                            <TextBlock Text="Процесс:" Margin="0 0 0 5" FontSize="20" FontFamily="Dubai Medium" Foreground="White"/>
+                            <ProgressBar Minimum="0" Maximum="100" Width="300px" HorizontalAlignment="Left" BorderBrush="{x:Null}" Background="{x:Null}" Name="pbStatus" Height="40" Foreground="#FFEB59C3" />
+                        </StackPanel>
+                    </Grid>
+                    <TextBlock Text="Список невыполненных услуг:" FontSize="24"  FontFamily="Dubai Medium" Foreground="White"/>
+                    <DataGrid x:Name="ListOutstandingService" Height="500px" AutoGenerateColumns="False" FontSize="20" FontFamily="Dubai Medium" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding IdOrder}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Номер заказа" FontSize="24"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Service.Service1}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Название" FontSize="24"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding StatusServicesInOrder.Status}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Статус" FontSize="24"/>
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTemplateColumn x:Name="ActionCell">
+                                <DataGridTemplateColumn.Header>
+                                    <TextBlock Text="Действие" FontSize="24"/>
+                                </DataGridTemplateColumn.Header>
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button x:Name="ToAnalyzer" Content="-->" ToolTip="Отправить на анализатор" Click="ToAnalyzer_Click"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>
